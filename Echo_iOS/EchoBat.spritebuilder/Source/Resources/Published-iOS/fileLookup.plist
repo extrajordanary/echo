@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>filenames</key>
+	<dict>
+		<key>echo_sounds/chirpLeft.wav</key>
+		<string>echo_sounds/chirpLeft.caf</string>
+		<key>echo_sounds/chirpLeftBehind.wav</key>
+		<string>echo_sounds/chirpLeftBehind.caf</string>
+		<key>echo_sounds/chirpRight.wav</key>
+		<string>echo_sounds/chirpRight.caf</string>
+		<key>echo_sounds/chirpRightBehind.wav</key>
+		<string>echo_sounds/chirpRightBehind.caf</string>
+		<key>echo_sounds/gameOver.wav</key>
+		<string>echo_sounds/gameOver.caf</string>
+		<key>echo_sounds/gameOver_s.wav</key>
+		<string>echo_sounds/gameOver_s.caf</string>
+		<key>echo_sounds/pulseOut.wav</key>
+		<string>echo_sounds/pulseOut.caf</string>
+		<key>echo_sounds/scored2.wav</key>
+		<string>echo_sounds/scored2.caf</string>
+		<key>echo_sounds/scored3.wav</key>
+		<string>echo_sounds/scored3.caf</string>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<integer>1</integer>
+	</dict>
+</dict>
+</plist>
