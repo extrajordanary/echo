@@ -7,6 +7,7 @@
 //
 
 #include <stdlib.h>
+#include <AVFoundation/AVFoundation.h>
 #import "Gameplay.h"
 #import "Bat.h"
 #import "Pulse.h"
@@ -25,9 +26,16 @@
     Pulse *pulse;
     Pulse *echo;
 
+    // audio things
+    AVAudioPlayer *echoRight;
+    AVAudioPlayer *echoRightB;
+    AVAudioPlayer *echoLeft;
+    AVAudioPlayer *echoLeftB;
+    AVAudioPlayer *pulseOut;
+    AVAudioPlayer *scored;
+    AVAudioPlayer *gameIsOver;
+
     int score; // number of targets caught
-
-
 
     float speed = 0.8f;  // speed of bat
     float earFact = 60;    // factor divided by speed to get "ear size"
@@ -130,6 +138,9 @@
 
 // is called when CCB file has completed loading
 - (void)didLoadFromCCB {
+    // load audio files
+    
+    
     // create starter instances
     pred = [Bat withX:0 Y:0 size:size ears:earFact direction:270 speed:speed pred:true];
     prey = [Bat withX:0 Y:0 size:size ears:0 direction:0 speed:0 pred:false];
