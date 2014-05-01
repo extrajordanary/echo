@@ -7,16 +7,26 @@
 //
 
 #import "MainScene.h"
-#import "SoundTest.h"
 
 @implementation MainScene
 
+//SoundPlayer* player1;
+//BOOL loaded = false;
+//
+//
+//- (void)didLoadFromCCB {
+//    if (!loaded) {
+//        player1 = [SoundPlayer initNew];
+//        loaded = true;
+//    }
+//}
+
 -(void) enterGame {
     CCLOG(@"enter the game");
+//    [player1 echoLeft];
     CCScene *testScene = [CCBReader loadAsScene:@"SoundTest"];
     [[CCDirector sharedDirector] replaceScene:testScene];
 }
-
 
 
 @end

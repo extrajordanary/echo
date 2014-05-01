@@ -7,7 +7,11 @@
 //
 
 #import "CCNode.h"
+#import "SoundPlayer.h"
+
 
 @interface MainScene : CCNode
-
+{
+//SoundPlayer *player1;
+}
 @end
