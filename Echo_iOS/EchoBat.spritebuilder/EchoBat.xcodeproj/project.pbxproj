@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		173A4D9F18FCB192007E8CEA /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 173A4D9E18FCB192007E8CEA /* Vector2D.m */; };
+		171BC30B19102C66006FDFFA /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 173A4D9E18FCB192007E8CEA /* Vector2D.m */; };
 		173A4DA518FF4C74007E8CEA /* Pulse.m in Sources */ = {isa = PBXBuildFile; fileRef = 173A4DA418FF4C74007E8CEA /* Pulse.m */; };
 		1776052818FB8E8E00D52AC0 /* Bat.m in Sources */ = {isa = PBXBuildFile; fileRef = 1776052718FB8E8E00D52AC0 /* Bat.m */; };
 		17FF823518FA0BC400373838 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FF823418FA0BC400373838 /* Gameplay.m */; };
@@ -338,12 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171BC30B19102C66006FDFFA /* Vector2D.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				1776052818FB8E8E00D52AC0 /* Bat.m in Sources */,
 				17FF823518FA0BC400373838 /* Gameplay.m in Sources */,
 				173A4DA518FF4C74007E8CEA /* Pulse.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
-				173A4D9F18FCB192007E8CEA /* Vector2D.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

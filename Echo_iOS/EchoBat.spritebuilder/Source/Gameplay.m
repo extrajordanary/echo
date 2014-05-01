@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <AVFoundation/AVFoundation.h>
+//#include <AVAudioPlayer.h>
 #import "Gameplay.h"
 #import "Bat.h"
 #import "Pulse.h"
@@ -84,23 +85,6 @@
     // update timer here?
 }
 
-// ** ROTATION CODE **
-//CABasicAnimation *fullRotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-//[fullRotation setFromValue:[NSNumber numberWithFloat:0]];
-//[fullRotation setToValue:[NSNumber numberWithFloat:((360*M_PI)/180)]];
-//[fullRotation setDuration:0.5f];
-//
-//[[element layer] addAnimation:fullRotation forKey:@"transform.rotation"];
-
-////rotating
-//CABasicAnimation *theAnimation;
-//theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-//theAnimation.duration=0.1;
-//theAnimation.repeatCount=1;
-//theAnimation.autoreverses=YES;
-//theAnimation.fromValue=[NSNumber numberWithFloat:0];
-//theAnimation.toValue=[NSNumber numberWithFloat:M_PI/3];
-//[[targetView layer] addAnimation:theAnimation forKey:@"rotateLayer"];
 
 // ** ROTATION CODE **
 //CABasicAnimation *fullRotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -121,19 +105,19 @@
 //[[targetView layer] addAnimation:theAnimation forKey:@"rotateLayer"];
 
 - (void)turnLeft {
-    _uiGround.rotation = -5;
-    [pred turn:15];
+//    _uiGround.rotation = -5;
+//    [pred turn:15];
 
 }
 
 - (void)turnRight {
-    _uiGround.rotation = 5;
-    [pred turn:-15];
+//    _uiGround.rotation = 5;
+//    [pred turn:-15];
 }
 
 - (void)sendPulse {
     // animate the echo button
-    [pulseOut play];
+//    [pulseOut play];
 //    [pred pulse];
 }
 
@@ -143,20 +127,20 @@
    //~/Resources/Published-iOS/echo_sounds
    
     
-    NSString *soundFilePath =
-    [[NSBundle mainBundle] pathForResource: @"Published-iOS/echo_sounds/pulseOut"
-                                    ofType: @"wav"];
-    
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
-    
-    AVAudioPlayer *newPlayer =
-    [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL
-                                           error: nil];
-    [fileURL release];
-    
-    pulseOut = newPlayer;
-    [newPlayer release];
-    
+//    NSString *soundFilePath =
+//    [[NSBundle mainBundle] pathForResource: @"Published-iOS/echo_sounds/pulseOut"
+//                                    ofType: @"wav"];
+//    
+//    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+//    
+//    AVAudioPlayer *newPlayer =
+//    [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL
+//                                           error: nil];
+//    [fileURL release];
+//    
+//    pulseOut = newPlayer;
+//    [newPlayer release];
+//    
     
     
     // create starter instances
