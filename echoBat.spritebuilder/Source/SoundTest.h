@@ -8,6 +8,7 @@
 
 #import "CCNode.h"
 
-@interface SoundTest : CCNode
-
+@interface SoundTest : CCNode {
+    
+}
 @end

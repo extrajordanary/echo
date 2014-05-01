@@ -7,6 +7,7 @@
 //
 
 #import "MainScene.h"
+#import "SoundTest.h"
 
 @implementation MainScene
 

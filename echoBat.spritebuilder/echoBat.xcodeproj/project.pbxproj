@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1732AE421911F4720080CDD1 /* SoundTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732AE411911F4720080CDD1 /* SoundTest.m */; };
+		1732AE461912033E0080CDD1 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732AE451912033E0080CDD1 /* SoundPlayer.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
 		B71F5913188484E7003F4D28 /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5909188484E7003F4D28 /* iPad.png */; };
@@ -58,6 +59,8 @@
 /* Begin PBXFileReference section */
 		1732AE401911F4720080CDD1 /* SoundTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundTest.h; path = Source/SoundTest.h; sourceTree = "<group>"; };
 		1732AE411911F4720080CDD1 /* SoundTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundTest.m; path = Source/SoundTest.m; sourceTree = "<group>"; };
+		1732AE441912033E0080CDD1 /* SoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundPlayer.h; path = Source/SoundPlayer.h; sourceTree = "<group>"; };
+		1732AE451912033E0080CDD1 /* SoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundPlayer.m; path = Source/SoundPlayer.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
 		B71F5909188484E7003F4D28 /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad.png; path = Icons/iPad.png; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				B7378993180767190076A88C /* MainScene.m */,
 				1732AE401911F4720080CDD1 /* SoundTest.h */,
 				1732AE411911F4720080CDD1 /* SoundTest.m */,
+				1732AE441912033E0080CDD1 /* SoundPlayer.h */,
+				1732AE451912033E0080CDD1 /* SoundPlayer.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				1732AE461912033E0080CDD1 /* SoundPlayer.m in Sources */,
 				1732AE421911F4720080CDD1 /* SoundTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
