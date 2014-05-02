@@ -12,6 +12,8 @@
 		<string>echo_sounds/chirpRight.caf</string>
 		<key>echo_sounds/chirpRightBehind.wav</key>
 		<string>echo_sounds/chirpRightBehind.caf</string>
+		<key>echo_sounds/crickets.wav</key>
+		<string>echo_sounds/crickets.caf</string>
 		<key>echo_sounds/gameOver.wav</key>
 		<string>echo_sounds/gameOver.caf</string>
 		<key>echo_sounds/gameOver_s.wav</key>

@@ -7,8 +7,9 @@
 //
 
 #import "Bat.h"
-//#import "Pulse.h"
-#import "Gameplay.m"
+//@class Pulse
+#import "Pulse.h"
+//#import "Gameplay.m"
 
 @implementation Bat
 
@@ -35,7 +36,7 @@
     ears = 60/speed;
 }
 
-- (void) update
+- (void) update:(Pulse*)echo andPulse:(Pulse*)pulse
 {
     velocity = [Vector2D mult:[Vector2D fromAngle:dir] with:speed];
     position = [Vector2D add:position to:velocity];

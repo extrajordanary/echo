@@ -16,7 +16,10 @@
 //
 //- (void)didLoadFromCCB {
 //    if (!loaded) {
-//        player1 = [SoundPlayer initNew];
+//        // access audio object
+//        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+//        // play background sound
+//        [audio playBg:@"crickets" loop:TRUE];
 //        loaded = true;
 //    }
 //}
@@ -27,6 +30,8 @@
     CCScene *testScene = [CCBReader loadAsScene:@"SoundTest"];
     [[CCDirector sharedDirector] replaceScene:testScene];
 }
+
+
 
 
 @end

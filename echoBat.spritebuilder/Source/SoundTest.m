@@ -21,6 +21,10 @@ BOOL loaded = false;
 
 - (void)didLoadFromCCB {
     if (!loaded) {
+        // access audio object
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        // play background sound
+        [audio playBg:@"Published-iOS/echo_sounds/crickets.caf" loop:TRUE];
         player = [SoundPlayer initNew];
         loaded = true;
     }
