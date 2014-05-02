@@ -76,6 +76,8 @@
         paused = false;
         gameOver = false;
         
+        CCLOG(@"start values set");
+        
         //create audio player and preload sound effects
         audio = [OALSimpleAudio sharedInstance];
         
@@ -103,7 +105,17 @@
         
         soundEffects = [NSDictionary dictionaryWithObjects:soundFiles forKeys:soundNames];
         
+        CCLOG(@"sound effects ready");
         
+        // load initial bats and soundwaves
+        player = [Bat withX:0 Y:0 size:size ears:earFact direction:270 speed:speed pred:true];
+        CCLOG(@"made bat");
+        target = [Bat withX:0 Y:0 size:size ears:0 direction:0 speed:0 pred:false];
+        [target newLoc];
+        pulse = [SoundWave withX:0 Y:0 speed:0]; // empty initial pulse
+        echo = [SoundWave withX:0 Y:0 speed:0]; // empty initial echo
+
+        // begin the game
         start = true;
         
         // finished initializing
@@ -118,6 +130,46 @@
     [audio playBg:soundEffects[@"crickets"] loop:TRUE];
 
     CCLOG(@"loaded FromCCB");
+}
+
+// update method
+- (void)update {
+    if(!paused && start) {
+//        [prey update];
+//        [pred update];
+//        [pulse update];
+//        [echo update];
+//        [pred caught:prey];
+    }
+    
+    // update scoreboard?
+    
+    if(gameOver) {
+        CCLOG(@"game over");
+        //        CCScene *gameOverScene = [CCBReader loadAsScene:@"GameOver"];
+        //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+    }
+    
+    // update timer here?
+}
+
+
+
+- (void)turnLeft {
+    //    _uiGround.rotation = -5;
+    //    [pred turn:15];
+    
+}
+
+- (void)turnRight {
+    //    _uiGround.rotation = 5;
+    //    [pred turn:-15];
+}
+
+- (void)sendPulse {
+    // animate the echo button
+    //    [pulseOut play];
+    //    [pred pulse];
 }
 
 @end

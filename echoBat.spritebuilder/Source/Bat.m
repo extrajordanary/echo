@@ -16,7 +16,6 @@
 + (Bat*) withX:(int)ix Y:(int)iy size:(int)iz ears:(float)ie direction:(float)angle speed:(float)is pred:(BOOL)p
 {
     return [[Bat alloc] initWithX:ix Y:iy size:iz ears:ie direction:angle speed:is pred:p];
-    CCLOG(@"bat initialized");
 }
 
 // *** instance methods
