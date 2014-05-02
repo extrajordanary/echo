@@ -7,6 +7,8 @@
 //
 
 #import "CCNode.h"
+#import "Bat.h"
+#import "SoundWave.h"
 
 @interface Gameplay : CCNode
 

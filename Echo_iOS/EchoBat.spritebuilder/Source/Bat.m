@@ -36,7 +36,7 @@
     ears = 60/speed;
 }
 
-- (void) update:(Pulse*)echo andPulse:(Pulse*)pulse
+- (void) update
 {
     velocity = [Vector2D mult:[Vector2D fromAngle:dir] with:speed];
     position = [Vector2D add:position to:velocity];
@@ -44,23 +44,18 @@
     rightEar->y = position->y + (ears*velocity->x);
     leftEar->x = position->x + (ears*velocity->y);
     leftEar->y = position->y - (ears*velocity->x);
-    if (!predator) {
-        [self echo:pulse];
-    } else {
-        [self echo:echo];
-    }
 }
 
-- (void) caught:(Bat*)other
-{
-    float dist = [Vector2D distanceFrom:position to:other->position];
-    if (dist < (size + other->size)) {
-        score += 1;
-        caught = 100;
-        //scored.trigger() //TODO:
-        [other newLoc];
-    }
-}
+//- (void) caught:(Bat*)other
+//{
+//    float dist = [Vector2D distanceFrom:position to:other->position];
+//    if (dist < (size + other->size)) {
+//        score += 1;
+//        caught = 100;
+//        //scored.trigger() //TODO:
+//        [other newLoc];
+//    }
+//}
 
 - (void) newLoc  //TODO: possibly adjust to ensure minimum distance away from old tgt loc
 {
@@ -69,48 +64,48 @@
     [self update];
 }
 
-- (void) pulse
-{
-    pulse = [Pulse withX:position->x Y:position->y speed:pulseSpeed];
-    //pulseOut.trigger() //TODO:
-    bounced = false;
-}
-
-- (void) echo:(Pulse*)p
-{
-    if (!predator) {
-        float dist = [Vector2D distanceFrom:position to:p->position];
-        if (p->radius > dist && !bounced) {
-            echo = [Pulse withX:position->x Y:position->y speed:pulseSpeed];
-            bounced = true;
-            heardR = false;
-            heardL = false;
-        }
-    } else {
-        Vector2D *ang = [Vector2D withX:(p->x - position->x) Y:(p->y - position->y)];
-        int ab = [Vector2D angleBetween:ang and:velocity];
-        
-        float dR = [Vector2D distanceFrom:rightEar to:p->position];
-        float dL = [Vector2D distanceFrom:leftEar to:p->position];
-        
-        if (p->radius > dR && !heardR) {
-            if (ab > 120) {
-                //echoRightB.trigger() //TODO:
-            } else {
-                //echoRight.trigger() //TODO:
-            }
-            heardR = true;
-        }
-        if (p->radius > dL && !heardL) {
-            if (ab > 120) {
-                //echoLeftB.trigger() //TODO:
-            } else {
-                //echoLeft.trigger() //TODO:
-            }
-            heardL = true;
-        }
-    }
-}
+//- (void) pulse
+//{
+//    pulse = [Pulse withX:position->x Y:position->y speed:pulseSpeed];
+//    //pulseOut.trigger() //TODO:
+//    bounced = false;
+//}
+//
+//- (void) echo:(Pulse*)p
+//{
+//    if (!predator) {
+//        float dist = [Vector2D distanceFrom:position to:p->position];
+//        if (p->radius > dist && !bounced) {
+//            echo = [Pulse withX:position->x Y:position->y speed:pulseSpeed];
+//            bounced = true;
+//            heardR = false;
+//            heardL = false;
+//        }
+//    } else {
+//        Vector2D *ang = [Vector2D withX:(p->x - position->x) Y:(p->y - position->y)];
+//        int ab = [Vector2D angleBetween:ang and:velocity];
+//        
+//        float dR = [Vector2D distanceFrom:rightEar to:p->position];
+//        float dL = [Vector2D distanceFrom:leftEar to:p->position];
+//        
+//        if (p->radius > dR && !heardR) {
+//            if (ab > 120) {
+//                //echoRightB.trigger() //TODO:
+//            } else {
+//                //echoRight.trigger() //TODO:
+//            }
+//            heardR = true;
+//        }
+//        if (p->radius > dL && !heardL) {
+//            if (ab > 120) {
+//                //echoLeftB.trigger() //TODO:
+//            } else {
+//                //echoLeft.trigger() //TODO:
+//            }
+//            heardL = true;
+//        }
+//    }
+//}
 
 // *** init method
 
@@ -146,7 +141,7 @@
         leftEar = [Vector2D withX:(position->x + (ears*velocity->y)) Y:(position->y - (ears*velocity->x))];
 
         
-        score = 0;
+//        score = 0;
         
     }
     return self;

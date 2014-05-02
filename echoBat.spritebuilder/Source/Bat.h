@@ -2,7 +2,7 @@
 //  Bat.h
 //  EchoBat
 //
-//  Created by Jordan on 4/13/14.
+//  Created by Jordan on 5/2/14.
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
@@ -21,13 +21,12 @@
     Vector2D *leftEar;
     Vector2D *velocity;
     
-    //int heading;  // redundancy with DIR?
     float ears; // half distance between ears (affects difficulty)
     float dir; // direction of flight (in degrees)
     float speed; // speed of bat
     
     bool predator; // is bat in chase and catch mode? else evade mode
-
+    
 }
 
 // class methods
@@ -37,10 +36,6 @@
 - (Bat*) initWithX:(int)ix Y:(int)iy size:(int)iz ears:(float)ie direction:(float)angle speed:(float)is pred:(BOOL)p;
 
 - (void) update;
-
-//- (void) caught:(Bat*)other;
-
-//- (void) pulse;
 
 - (void) newLoc;
 

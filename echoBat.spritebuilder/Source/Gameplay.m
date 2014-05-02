@@ -10,16 +10,16 @@
 
 @implementation Gameplay {
 
-    OALSimpleAudio *player;
+    OALSimpleAudio *audio;
     NSArray *soundFiles;
     NSArray *soundNames;
     NSDictionary *soundEffects;
     
-//    Bat pred;
-//    Bat prey;
-//    
-//    SoundWave pulse;
-//    SoundWave echo;
+    Bat *player;
+    Bat *target;
+    
+    SoundWave *pulse;
+    SoundWave *echo;
     
     float speed; // speed of bat
     float earFact; // factor divided by speed to get "ear size"
@@ -41,6 +41,7 @@
     bool heardR; // has right ear heard current echo?
     bool heardL; // has left ear heard current echo?
     
+    int score;
     
     BOOL start;
     BOOL paused;
@@ -57,10 +58,10 @@
         speedCh = 0; // timer to display change of bat speed txt
         pulseCh = 0; // timer to display change of pulse speed txt
         
-        timeElapsed; // milliseconds since start of program
+//        timeElapsed; // milliseconds since start of program
         gameDur = 180;  // length of game in seconds
-        timerStart;  // for setting begining of timer
-        startPause;
+//        timerStart;  // for setting begining of timer
+//        startPause;
         timerPaused = 0; // sum total of time in paused/lost mode
         timer = gameDur;  // current in-game timer
         
@@ -69,12 +70,14 @@
         heardR = false; // has right ear heard current echo?
         heardL = false; // has left ear heard current echo?
         
+        score = 0;
+        
         start = false;
         paused = false;
         gameOver = false;
         
         //create audio player and preload sound effects
-        player = [OALSimpleAudio sharedInstance];
+        audio = [OALSimpleAudio sharedInstance];
         
         soundFiles = @[@"Published-iOS/echo_sounds/chirpLeft.caf",
                         @"Published-iOS/echo_sounds/chirpLeftBehind.caf",
@@ -86,7 +89,7 @@
                         @"Published-iOS/echo_sounds/crickets.caf"];
 
         for (NSString *string in soundFiles) {
-            [player preloadEffect:string];
+            [audio preloadEffect:string];
         }
         
         soundNames = @[@"left",
@@ -111,8 +114,8 @@
 
 - (void)didLoadFromCCB {
     // play background sound
-    player.bgVolume = 0.05f;
-    [player playBg:soundEffects[@"crickets"] loop:TRUE];
+    audio.bgVolume = 0.05f;
+    [audio playBg:soundEffects[@"crickets"] loop:TRUE];
 
     CCLOG(@"loaded FromCCB");
 }
