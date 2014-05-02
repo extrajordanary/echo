@@ -16,17 +16,18 @@
 }
 
 SoundPlayer* player;
-BOOL loaded = false;
+OALSimpleAudio *audio1;
+BOOL loadedZ = false;
 
 
 - (void)didLoadFromCCB {
-    if (!loaded) {
+    if (!loadedZ) {
         // access audio object
-        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        audio1 = [OALSimpleAudio sharedInstance];
         // play background sound
-        [audio playBg:@"Published-iOS/echo_sounds/crickets.caf" loop:TRUE];
+        [audio1 playBg:@"Published-iOS/echo_sounds/scored2.caf" loop:TRUE];
         player = [SoundPlayer initNew];
-        loaded = true;
+        loadedZ = true;
     }
 }
 
@@ -46,7 +47,8 @@ BOOL loaded = false;
 
 -(void) _pulse {
     CCLOG(@"pulse out");
-    [player pulseOut];
+    [audio1 playEffect:@"Published-iOS/echo_sounds/pulseOut.caf"];
+//    [player pulseOut];
     //    CCScene *gameScene = [CCBReader loadAsScene:@"MainScene"];
     //    [[CCDirector sharedDirector] replaceScene:mainScene];
 }

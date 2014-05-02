@@ -10,25 +10,31 @@
 
 @implementation MainScene
 
-//SoundPlayer* player1;
-//BOOL loaded = false;
-//
-//
-//- (void)didLoadFromCCB {
-//    if (!loaded) {
-//        // access audio object
-//        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-//        // play background sound
-//        [audio playBg:@"crickets" loop:TRUE];
-//        loaded = true;
-//    }
-//}
+OALSimpleAudio *audio;
+int loadCount = 0;
+BOOL initialized = false;
+
+- (void)didLoadFromCCB {
+
+    if (!initialized) {
+    loadCount += 1;
+        // access audio object
+        audio = [OALSimpleAudio sharedInstance];
+        // play background sound
+//        [audio playBg:@"Published-iOS/echo_sounds/crickets.caf" loop:TRUE];
+        initialized = true;
+    }
+    CCLOG(@"%i",loadCount);
+
+}
 
 -(void) enterGame {
     CCLOG(@"enter the game");
-//    [player1 echoLeft];
-    CCScene *testScene = [CCBReader loadAsScene:@"SoundTest"];
-    [[CCDirector sharedDirector] replaceScene:testScene];
+    CCScene *gameScene = [CCBReader loadAsScene:@"Gameplay"];
+    [[CCDirector sharedDirector] replaceScene:gameScene];
+    
+//    CCScene *testScene = [CCBReader loadAsScene:@"SoundTest"];
+//    [[CCDirector sharedDirector] replaceScene:testScene];
 }
 
 
