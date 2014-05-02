@@ -1256,8 +1256,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>turnLeft</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1596,8 +1596,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>turnRight</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1928,8 +1928,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>sendPulse</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2167,6 +2167,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -2239,8 +2241,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

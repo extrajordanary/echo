@@ -156,20 +156,23 @@
 
 
 - (void)turnLeft {
+    CCLOG(@"turn left");
     //    _uiGround.rotation = -5;
-    //    [pred turn:15];
-    
+    [player turn:15];
+    CCLOG(@"heading %f", player->dir);
 }
 
 - (void)turnRight {
+    CCLOG(@"turn right");
     //    _uiGround.rotation = 5;
-    //    [pred turn:-15];
+    [player turn:-15];
+    CCLOG(@"heading %f", player->dir);
 }
 
 - (void)sendPulse {
+    CCLOG(@"send pulse");
+    [audio playEffect:soundEffects[@"pulse"]];
     // animate the echo button
-    //    [pulseOut play];
-    //    [pred pulse];
 }
 
 @end

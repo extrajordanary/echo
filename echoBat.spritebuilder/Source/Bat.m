@@ -22,7 +22,10 @@
 
 - (void) turn:(int)angle
 {
-    dir = fmodf((dir+angle), 360);
+    dir = fmodf((dir+angle), 360.0f);
+    if (dir < 0) {
+        dir = dir + 360;
+    }
 }
 
 - (void) accelerate:(float)change

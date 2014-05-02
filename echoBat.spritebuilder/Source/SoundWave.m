@@ -30,8 +30,6 @@
     self = [super init];
     if(nil != self)
     {
-//        x = nx;
-//        y = ny;
         position = [Vector2D withX:nx Y:ny];
         speed = nspeed;
         radius = 0.0f;

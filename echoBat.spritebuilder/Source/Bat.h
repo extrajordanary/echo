@@ -16,7 +16,7 @@
     int size; // radius of size of bat
     
     
-@private
+//@private
     Vector2D *rightEar;
     Vector2D *leftEar;
     Vector2D *velocity;
