@@ -10,23 +10,6 @@
 
 @implementation MainScene
 
-OALSimpleAudio *audio;
-int loadCount = 0;
-BOOL initialized = false;
-
-- (void)didLoadFromCCB {
-
-    if (!initialized) {
-    loadCount += 1;
-        // access audio object
-        audio = [OALSimpleAudio sharedInstance];
-        // play background sound
-//        [audio playBg:@"Published-iOS/echo_sounds/crickets.caf" loop:TRUE];
-        initialized = true;
-    }
-    CCLOG(@"%i",loadCount);
-
-}
 
 -(void) enterGame {
     CCLOG(@"enter the game");
