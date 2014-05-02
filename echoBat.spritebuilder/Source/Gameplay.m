@@ -69,7 +69,7 @@
         heardR = false; // has right ear heard current echo?
         heardL = false; // has left ear heard current echo?
         
-        start = NO;
+        start = false;
         paused = false;
         gameOver = false;
         
@@ -101,7 +101,7 @@
         soundEffects = [NSDictionary dictionaryWithObjects:soundFiles forKeys:soundNames];
         
         
-        start = YES;
+        start = true;
         
         // finished initializing
         CCLOG(@"init");
@@ -111,7 +111,7 @@
 
 - (void)didLoadFromCCB {
     // play background sound
-    player.bgVolume = 0.2f;
+    player.bgVolume = 0.05f;
     [player playBg:soundEffects[@"crickets"] loop:TRUE];
 
     CCLOG(@"loaded FromCCB");
