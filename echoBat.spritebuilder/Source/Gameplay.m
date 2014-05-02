@@ -10,7 +10,10 @@
 
 @implementation Gameplay {
 
-OALSimpleAudio *player;
+    OALSimpleAudio *player;
+    NSArray *soundFiles;
+    NSArray *soundNames;
+    NSDictionary *soundEffects;
 
 }
 
@@ -20,9 +23,34 @@ OALSimpleAudio *player;
     if (self) {
         // initialize instance variables here
         
-        //create audio player
+        //create audio player and preload sound effects
         player = [OALSimpleAudio sharedInstance];
+        
+        soundFiles = @[@"Published-iOS/echo_sounds/chirpLeft.caf",
+                        @"Published-iOS/echo_sounds/chirpLeftBehind.caf",
+                        @"Published-iOS/echo_sounds/chirpRight.caf",
+                        @"Published-iOS/echo_sounds/chirpRightBehind.caf",
+                        @"Published-iOS/echo_sounds/gameOver.caf",
+                        @"Published-iOS/echo_sounds/pulseOut.caf",
+                        @"Published-iOS/echo_sounds/scored3.caf",
+                        @"Published-iOS/echo_sounds/crickets.caf"];
 
+        for (NSString *string in soundFiles) {
+            [player preloadEffect:string];
+        }
+        
+        soundNames = @[@"left",
+                       @"leftB",
+                       @"right",
+                       @"rightB",
+                       @"gameOver",
+                       @"pulse",
+                       @"score",
+                       @"crickets"];
+        
+        soundEffects = [NSDictionary dictionaryWithObjects:soundFiles forKeys:soundNames];
+        
+        
         // finished initializing
         CCLOG(@"init");
     }
@@ -32,7 +60,7 @@ OALSimpleAudio *player;
 - (void)didLoadFromCCB {
     // play background sound
     player.bgVolume = 0.2f;
-    [player playBg:@"Published-iOS/echo_sounds/crickets.caf" loop:TRUE];
+    [player playBg:soundEffects[@"crickets"] loop:TRUE];
 
     CCLOG(@"loaded FromCCB");
 }
