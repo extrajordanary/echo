@@ -222,9 +222,13 @@
 }
 
 - (void)sendPulse {
-    CCLOG(@"send pulse");
     [audio playEffect:soundEffects[@"pulse"]];
     // animate the echo button
+
+    pulse = [SoundWave withX:player->position->x Y:player->position->y speed:pulseSpeed];
+    bounced = false;
+    CCLOG(@"new pulse");
+
 }
 
 @end
