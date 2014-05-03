@@ -163,7 +163,7 @@
         [echo update];
         
         // did the player catch the target?
-        
+        [self checkCatch];
         
     }
     
@@ -176,6 +176,20 @@
     }
     
     // update timer here?
+}
+
+- (void)checkCatch {
+    // if player catches target, increase score and move target to new location
+    float dist = [Vector2D distanceFrom:player->position to:target->position];
+    if (dist < (player->size + target->size)) {
+        score += 1;
+        caught = 100;
+
+        [audio playEffect:soundEffects[@"score"]];
+        [target newLoc];
+    }
+
+    
 }
 
 - (void)checkPulse {
