@@ -26,6 +26,7 @@
     if (dir < 0) {
         dir = dir + 360;
     }
+    CCLOG(@"dir %f", dir);
 }
 
 - (void) accelerate:(float)change
@@ -37,7 +38,15 @@
 - (void) update
 {
     velocity = [Vector2D mult:[Vector2D fromAngle:dir] with:speed];
+    
     position = [Vector2D add:position to:velocity];
+    position->x = min(position->x, 300);
+    position->x = max(position->x, 0);
+    
+    position->y = min(position->y, 300);
+    position->y = max(position->y, 0);
+    CCLOG(@"                           %f  %f", position->x, position->y);
+    
     rightEar->x = position->x - (ears*velocity->y);
     rightEar->y = position->y + (ears*velocity->x);
     leftEar->x = position->x + (ears*velocity->y);

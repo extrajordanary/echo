@@ -76,7 +76,8 @@ BOOL areEqual(float a, float b)
 
 + (Vector2D*) fromAngle:(float)degrees // 2014 Jordan Arnesen
 {
-    return [Vector2D withX:cosf(degrees) Y:sinf(degrees)];
+    float rad = degrees * M_PI /180;
+    return [Vector2D withX:cosf(rad) Y:sinf(rad)].normalize;
 }
 
 + (float) getAngle:(Vector2D*)v // 2014 Jordan Arnesen
@@ -177,10 +178,10 @@ static Vector2D* xy = nil;
     return sqrt(x*x + y*y);
 }
 
-- (float) angle  // 2014 Jordan Arnesen
-{
-    return atan2f(y, x);
-}
+//- (float) angle  // 2014 Jordan Arnesen
+//{
+//    return atan2f(y, x);
+//}
 
 - (float) lengthSquared
 {

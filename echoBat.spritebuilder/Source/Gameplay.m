@@ -10,8 +10,13 @@
 
 @implementation Gameplay {
     
+    int counter;
+    
     CCSprite *_rotateLayer;
     CCSprite *_bat;
+    
+    CCSprite *_pix1;
+    CCSprite *_pix2;
     
     CCActionRotateBy *batRight;
     CCActionRotateBy *batLeft;
@@ -66,10 +71,10 @@
 
     if (self) {
         
-        
-        int h = [[UIScreen mainScreen] bounds].size.height;
-        int w = [[UIScreen mainScreen] bounds].size.width;
-        gameZone = CGRectMake(0, 0, w, h);
+        counter = 0;
+//        int h = [[UIScreen mainScreen] bounds].size.height;
+//        int w = [[UIScreen mainScreen] bounds].size.width;
+        gameZone = CGRectMake(0, 0, 300, 300);
  
         // initialize instance variables here
         speed = .1;  // speed of bat
@@ -101,8 +106,8 @@
         CCLOG(@"start values set");
         
         // CCActions
-        batLeft = [CCActionRotateBy actionWithDuration:.5 angle:-10];
-        batRight = [CCActionRotateBy actionWithDuration:.5 angle:10];
+        batLeft = [CCActionRotateTo actionWithDuration:.5 angle:-10];
+        batRight = [CCActionRotateTo actionWithDuration:.5 angle:10];
 
         
         //create audio player and preload sound effects
@@ -135,7 +140,7 @@
         CCLOG(@"sound effects ready");
         
         // load initial bats and soundwaves
-        player = [Bat withX:0 Y:0 size:size ears:earFact direction:270 speed:speed pred:true];
+        player = [Bat withX:0 Y:0 size:size ears:earFact direction:45 speed:speed pred:true];
         CCLOG(@"made bat");
         heading = player->dir;
         target = [Bat withX:50 Y:50 size:size ears:0 direction:0 speed:0 pred:false];
@@ -169,11 +174,15 @@
         // update position
         [player update];
         
+        _pix1.position = CGPointMake(player->position->x, player->position->y);
+        _pix2.position = CGPointMake(target->position->x, target->position->y);
+
+        
         // check for soundwaves hitting player or obstacles
         [self checkPulse];
         [self checkEcho];
         
-        heading = player->dir;
+//        heading = player->dir;
         
         
         [pulse update];
@@ -227,19 +236,45 @@
 - (void)checkEcho {
     
     
-    Vector2D *ang = [Vector2D withX:(echo->position->x - player->position->x)
-                                  Y:(echo->position->y - player->position->y)];
+//    Vector2D *ang = [Vector2D withX:(echo->position->x - player->position->x)
+//                                  Y:(echo->position->y - player->position->y)];
     
-    float temp1 = [Vector2D getAngle:ang];
-    CCLOG(@"ang - %f", temp1);
+    Vector2D *ang = [Vector2D withX:(target->position->x - player->position->x)
+                                  Y:(target->position->y - player->position->y)];
+
+    Vector2D *targ = [Vector2D withX:50 Y:50];
+    float targAng = [Vector2D getAngle:targ];
+    
+    Vector2D *theplayer = [Vector2D withX:player->position->x Y:player->position->y];
+    float tpAng = [Vector2D getAngle:theplayer];
+    
+    float tar2pAng = [Vector2D getAngle:ang];
     
     float temp2 = [Vector2D getAngle:player->velocity];
-    CCLOG(@"vel - %f", temp2);
-    CCLOG(@"heading - %f", heading);
+
     
     int ab = [Vector2D angleBetween:player->velocity and:ang];
-    CCLOG(@"%i", ab);
+    float dot = [Vector2D dot:player->velocity with:ang];
     
+    heading = player->dir;
+    
+    if (counter > 100) {
+//        CCLOG(@"target angle %f", targAng);
+        CCLOG(@"player angle %f", tpAng);
+//        CCLOG(@"difference = %f", targAng - tpAng);
+//        CCLOG(@"target to player angle - %f", tar2pAng);
+
+        CCLOG(@"velocity - %f", temp2);
+//        CCLOG(@"heading - %f", heading);
+        CCLOG(@"player to target angle %i", ab);
+        CCLOG(@"difference1 --- %f", temp2-ab);
+        CCLOG(@"difference2 --- %f", ab-tpAng);
+//        CCLOG(@"dot   %f", dot);
+        
+        counter =0;
+    }
+    counter += 1;
+
     // distance between echo origin and bat
     float dR = [Vector2D distanceFrom:player->rightEar to:echo->position];
     float dL = [Vector2D distanceFrom:player->leftEar to:echo->position];
@@ -287,7 +322,7 @@
 //    CCLOG(@"turn left");
     [player turn:5];
 
-    heading = player->dir;
+//    heading = player->dir;
     worldLeft = [CCActionRotateTo actionWithDuration:.5 angle:heading];
     [_rotateLayer runAction:
      [CCActionSequence actions:
@@ -307,8 +342,10 @@
       nil]];
     
 //    CCLOG(@"turn right");
+    
     [player turn:-5];
-    heading = player->dir;
+    
+//    heading = player->dir;
     worldRight = [CCActionRotateTo actionWithDuration:.5 angle:heading];
 
     [_rotateLayer runAction:
