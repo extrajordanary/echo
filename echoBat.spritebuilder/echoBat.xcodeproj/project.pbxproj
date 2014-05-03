@@ -14,6 +14,7 @@
 		17B0ADE619144EED001BB1ED /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B0ADE519144EED001BB1ED /* Vector2D.m */; };
 		17B0ADE91914534E001BB1ED /* Bat.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B0ADE81914534E001BB1ED /* Bat.m */; };
 		17B0ADEC1914A262001BB1ED /* UIImage-JTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B0ADEB1914A262001BB1ED /* UIImage-JTColor.m */; };
+		17B0ADEF1914DDE1001BB1ED /* EchoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B0ADEE1914DDE1001BB1ED /* EchoButton.m */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
 		B71F5913188484E7003F4D28 /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5909188484E7003F4D28 /* iPad.png */; };
@@ -76,6 +77,8 @@
 		17B0ADE81914534E001BB1ED /* Bat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bat.m; path = Source/Bat.m; sourceTree = "<group>"; };
 		17B0ADEA1914A262001BB1ED /* UIImage-JTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage-JTColor.h"; path = "Source/UIImage-JTColor.h"; sourceTree = "<group>"; };
 		17B0ADEB1914A262001BB1ED /* UIImage-JTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage-JTColor.m"; path = "Source/UIImage-JTColor.m"; sourceTree = "<group>"; };
+		17B0ADED1914DDE1001BB1ED /* EchoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EchoButton.h; path = Source/EchoButton.h; sourceTree = "<group>"; };
+		17B0ADEE1914DDE1001BB1ED /* EchoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EchoButton.m; path = Source/EchoButton.m; sourceTree = "<group>"; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
 		B71F5909188484E7003F4D28 /* iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad.png; path = Icons/iPad.png; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				17B0ADE81914534E001BB1ED /* Bat.m */,
 				17B0ADD819142925001BB1ED /* Gameplay.h */,
 				17B0ADD919142925001BB1ED /* Gameplay.m */,
+				17B0ADED1914DDE1001BB1ED /* EchoButton.h */,
+				17B0ADEE1914DDE1001BB1ED /* EchoButton.m */,
 				17B0ADEA1914A262001BB1ED /* UIImage-JTColor.h */,
 				17B0ADEB1914A262001BB1ED /* UIImage-JTColor.m */,
 				B7378992180767190076A88C /* MainScene.h */,
@@ -354,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
+				17B0ADEF1914DDE1001BB1ED /* EchoButton.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				17B0ADE319144E68001BB1ED /* SoundWave.m in Sources */,

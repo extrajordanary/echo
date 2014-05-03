@@ -49,7 +49,7 @@
 - (NSString*) description;
 
 - (float) length;
-- (float) angle; // 2014 Jordan Arnesen
+//- (float) angle; // 2014 Jordan Arnesen
 - (float) lengthSquared;
 
 - (BOOL) isEqual:(Vector2D*)other;

@@ -7,10 +7,14 @@
 //
 
 #import "Gameplay.h"
+#import "EchoButton.h"
 
 @implementation Gameplay {
     
     int counter;
+    
+    CCLabelTTF *_scoreText;
+    CCLabelTTF *_timeText;
     
     CCSprite *_rotateLayer;
     CCSprite *_bat;
@@ -22,6 +26,8 @@
     
     CCActionRotateBy *batRight;
     CCActionRotateBy *batLeft;
+    CCActionRotateBy *batCenter;
+    
     CCActionRotateTo *worldLeft;
     CCActionRotateTo *worldRight;
     
@@ -72,7 +78,8 @@
     self = [super init];
 
     if (self) {
-        
+//        animationManager = self.userObject;
+
         counter = 0;
 //        int h = [[UIScreen mainScreen] bounds].size.height;
 //        int w = [[UIScreen mainScreen] bounds].size.width;
@@ -101,6 +108,8 @@
         
         score = 0;
         
+//        _scoreText = @"Score: %i", score;
+        
         start = false;
         paused = false;
         gameOver = false;
@@ -109,6 +118,7 @@
         
         // CCActions
         batLeft = [CCActionRotateTo actionWithDuration:.5 angle:-10];
+        batCenter = [CCActionRotateTo actionWithDuration:.5 angle:0];
         batRight = [CCActionRotateTo actionWithDuration:.5 angle:10];
 
         
@@ -192,6 +202,11 @@
         
         // did the player catch the target?
         [self checkCatch];
+        
+        [_scoreText setString:@""];
+        [_scoreText setString:[NSString stringWithFormat:@"Score: %d", score]];
+
+
         
     }
     
@@ -315,7 +330,7 @@
     [_bat runAction:
                       [CCActionSequence actions:
                        batLeft,
-                       batRight,
+                       batCenter,
                        nil]];
  
 //    [_bat setRotation:-10];
@@ -338,7 +353,7 @@
     [_bat runAction:
      [CCActionSequence actions:
       batRight,
-      batLeft,
+      batCenter,
       nil]];
     
 //    CCLOG(@"turn right");
@@ -358,8 +373,9 @@
 - (void)sendPulse {
     [audio playEffect:soundEffects[@"pulse"]];
     // animate the echo button
-
+    
     pulse = [SoundWave withX:player->position->x Y:player->position->y speed:pulseSpeed];
+    
     bounced = false;
     CCLOG(@"new pulse %f, %f", player->position->x, player->position->y);
 
