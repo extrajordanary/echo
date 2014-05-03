@@ -81,7 +81,8 @@ BOOL areEqual(float a, float b)
 
 + (float) getAngle:(Vector2D*)v // 2014 Jordan Arnesen
 {
-    return atan2f(v->y, v->x);
+    float radians = atan2f(v->y, v->x);
+    return radians * 180 / M_PI;
 }
 
 + (float) distanceFrom:(Vector2D*)v1 to:(Vector2D*)v2 // 2014 Jordan Arnesen
@@ -93,7 +94,8 @@ BOOL areEqual(float a, float b)
 
 + (float) angleBetween:(Vector2D*)v1 and:(Vector2D*)v2 // 2014 Jordan Arnesen
 {
-    return fabsf([v1 angle] - [v2 angle]);
+//    return fabsf([v1 angle] - [v2 angle]);
+    return fabsf([Vector2D getAngle:v1] - [Vector2D getAngle:v2]);
 }
 
 #pragma mark -

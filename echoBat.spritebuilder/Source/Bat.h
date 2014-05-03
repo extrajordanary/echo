@@ -37,7 +37,7 @@
 
 - (void) update;
 
-- (void) newLoc;
+- (void) newLoc:(CGRect)zone;
 
 - (void) accelerate:(float)change;
 

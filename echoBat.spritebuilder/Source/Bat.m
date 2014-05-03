@@ -44,11 +44,18 @@
     leftEar->y = position->y - (ears*velocity->x);
 }
 
-- (void) newLoc  //TODO: possibly adjust to ensure minimum distance away from old tgt loc
+- (void) newLoc:(CGRect)zone  //TODO: possibly adjust to ensure minimum distance away from old tgt loc
 {
-    position->x += (arc4random() % 200) - 100;
-    position->y += (arc4random() % 200) - 100;
-    [self update];
+//    position->x += (arc4random() % 100) - 50;
+//    position->y += (arc4random() % 100) - 50;
+//    position-> x += fmodf(arc4random(), 100) -50;
+//    position-> y += fmodf(arc4random(), 100) -50;
+
+    Vector2D *tempVect = [Vector2D randomInside:zone];
+    position->x += tempVect->x;
+    position->y += tempVect->y;
+    
+    //    [self update];
 }
 
 

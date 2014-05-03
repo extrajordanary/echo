@@ -17,6 +17,8 @@
     CCActionRotateBy *batLeft;
     CCActionRotateTo *worldLeft;
     CCActionRotateTo *worldRight;
+    
+    CGRect gameZone;
 
     OALSimpleAudio *audio;
     NSArray *soundFiles;
@@ -63,7 +65,17 @@
     self = [super init];
 
     if (self) {
+        
+        
+        int h = [[UIScreen mainScreen] bounds].size.height;
+        int w = [[UIScreen mainScreen] bounds].size.width;
+        gameZone = CGRectMake(0, 0, w, h);
+ 
         // initialize instance variables here
+        speed = .1;  // speed of bat
+        earFact = 60;    // factor divided by speed to get "ear size"
+        size = 10; // bat and target size
+        
         caught = 0; // timer to display extra text after each capture
         speedCh = 0; // timer to display change of bat speed txt
         pulseCh = 0; // timer to display change of pulse speed txt
@@ -75,7 +87,7 @@
         timerPaused = 0; // sum total of time in paused/lost mode
         timer = gameDur;  // current in-game timer
         
-        pulseSpeed = 10; // speed of pulses (aka speed of sound in game)
+        pulseSpeed = 4; // speed of pulses (aka speed of sound in game)
         bounced = false; // has the current pulse generated an echo yet?
         heardR = false; // has right ear heard current echo?
         heardL = false; // has left ear heard current echo?
@@ -126,8 +138,8 @@
         player = [Bat withX:0 Y:0 size:size ears:earFact direction:270 speed:speed pred:true];
         CCLOG(@"made bat");
         heading = player->dir;
-        target = [Bat withX:0 Y:0 size:size ears:0 direction:0 speed:0 pred:false];
-        [target newLoc];
+        target = [Bat withX:50 Y:50 size:size ears:0 direction:0 speed:0 pred:false];
+//        [target newLoc];
         pulse = [SoundWave withX:0 Y:0 speed:0]; // empty initial pulse
         echo = [SoundWave withX:0 Y:0 speed:0]; // empty initial echo
 
@@ -149,8 +161,11 @@
 }
 
 // update method
-- (void)update {
+- (void)update:(CCTime)delta {
+//    CCLOG(@"update");
     if(!paused && start) {
+//        CCLOG(@"u");
+
         // update position
         [player update];
         
@@ -159,6 +174,8 @@
         [self checkEcho];
         
         heading = player->dir;
+        
+        
         [pulse update];
         [echo update];
         
@@ -167,7 +184,7 @@
         
     }
     
-    // update scoreboard?
+    // update scoreboard TODO
     
     if(gameOver) {
         CCLOG(@"game over");
@@ -175,7 +192,7 @@
         //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
     }
     
-    // update timer here?
+    // update timer TODO
 }
 
 - (void)checkCatch {
@@ -186,7 +203,9 @@
         caught = 100;
 
         [audio playEffect:soundEffects[@"score"]];
-        [target newLoc];
+        CCLOG(@"new echo");
+        [target newLoc:gameZone];
+        CCLOG(@"new target %f, %f", target->position->x, target->position->y);
     }
 
     
@@ -201,31 +220,51 @@
         bounced = true;
         heardR = false;
         heardL = false;
+        CCLOG(@"new echo %f, %f", target->position->x, target->position->y);
     }
 }
 
 - (void)checkEcho {
-    // distance between echo and bat
+    
+    
     Vector2D *ang = [Vector2D withX:(echo->position->x - player->position->x)
                                   Y:(echo->position->y - player->position->y)];
-    int ab = [Vector2D angleBetween:ang and:player->velocity];
-            
+    
+    float temp1 = [Vector2D getAngle:ang];
+    CCLOG(@"ang - %f", temp1);
+    
+    float temp2 = [Vector2D getAngle:player->velocity];
+    CCLOG(@"vel - %f", temp2);
+    CCLOG(@"heading - %f", heading);
+    
+    int ab = [Vector2D angleBetween:player->velocity and:ang];
+    CCLOG(@"%i", ab);
+    
+    // distance between echo origin and bat
     float dR = [Vector2D distanceFrom:player->rightEar to:echo->position];
     float dL = [Vector2D distanceFrom:player->leftEar to:echo->position];
             
-    if (pulse->radius > dR && !heardR) {   // right ear
+    if (echo->radius > dR && !heardR) {   // right ear
         if (ab > 120) {
-            [audio playEffect:soundEffects[@"rightB"]];
+//            [audio playEffect:soundEffects[@"rightB"]];
+            [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:1 loop:false];
+            CCLOG(@"behind right ear");
         } else {
-            [audio playEffect:soundEffects[@"right"]];
+//            [audio playEffect:soundEffects[@"right"]];
+            [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:1 loop:false];
+            CCLOG(@"right ear");
         }
         heardR = true;
     }
-    if (pulse->radius > dL && !heardL) { // left ear
+    if (echo->radius > dL && !heardL) { // left ear
         if (ab > 120) {
-            [audio playEffect:soundEffects[@"leftB"]];
+//            [audio playEffect:soundEffects[@"leftB"]];
+            [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:-1 loop:false];
+            CCLOG(@"behind left ear");
         } else {
-            [audio playEffect:soundEffects[@"left"]];
+//            [audio playEffect:soundEffects[@"left"]];
+            [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:-1 loop:false];
+            CCLOG(@"left ear");
         }
         heardL = true;
     }
@@ -245,7 +284,7 @@
                        nil]];
  
 //    [_bat setRotation:-10];
-    CCLOG(@"turn left");
+//    CCLOG(@"turn left");
     [player turn:5];
 
     heading = player->dir;
@@ -255,8 +294,7 @@
       worldLeft,
       nil]];
     
-//    [_rotateLayer setRotation:heading];
-    CCLOG(@"heading %f", heading);
+//    CCLOG(@"heading %f", heading);
 }
 
 - (void)turnRight {
@@ -268,7 +306,7 @@
       batLeft,
       nil]];
     
-    CCLOG(@"turn right");
+//    CCLOG(@"turn right");
     [player turn:-5];
     heading = player->dir;
     worldRight = [CCActionRotateTo actionWithDuration:.5 angle:heading];
@@ -277,8 +315,7 @@
      [CCActionSequence actions:
       worldRight,
       nil]];
-//    [_rotateLayer setRotation:heading];
-    CCLOG(@"heading %f", player->dir);
+//    CCLOG(@"heading %f", player->dir);
 }
 
 - (void)sendPulse {
@@ -287,8 +324,30 @@
 
     pulse = [SoundWave withX:player->position->x Y:player->position->y speed:pulseSpeed];
     bounced = false;
-    CCLOG(@"new pulse");
+    CCLOG(@"new pulse %f, %f", player->position->x, player->position->y);
 
+}
+
+-(void) playRight {
+    [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:1 loop:false];
+    
+//    [audio playEffect:soundEffects[@"right"]];
+    CCLOG(@"R");
+}
+
+-(void) playRightB {
+    [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:1 loop:false];
+    CCLOG(@"R B");
+}
+
+-(void) playLeft {
+    [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:-1 loop:false];
+    CCLOG(@"L");
+}
+
+-(void) playLeftB {
+    [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:-1 loop:false];
+    CCLOG(@"L B");
 }
 
 @end
