@@ -260,13 +260,15 @@
     
     if (counter > 100) {
 //        CCLOG(@"target angle %f", targAng);
-        CCLOG(@"player angle %f", tpAng);
+//        CCLOG(@"player angle %f", tpAng);
 //        CCLOG(@"difference = %f", targAng - tpAng);
-//        CCLOG(@"target to player angle - %f", tar2pAng);
+        
 
         CCLOG(@"velocity - %f", temp2);
-//        CCLOG(@"heading - %f", heading);
-        CCLOG(@"player to target angle %i", ab);
+        CCLOG(@"heading - %f", heading);
+        CCLOG(@"target to player angle - %f", tar2pAng);
+        
+        CCLOG(@"player to target angle - %i", ab);
         CCLOG(@"difference1 --- %f", temp2-ab);
         CCLOG(@"difference2 --- %f", ab-tpAng);
 //        CCLOG(@"dot   %f", dot);
@@ -279,7 +281,7 @@
     float dR = [Vector2D distanceFrom:player->rightEar to:echo->position];
     float dL = [Vector2D distanceFrom:player->leftEar to:echo->position];
             
-    if (echo->radius > dR && !heardR) {   // right ear
+    if (echo->radius > dL && !heardR) {   // right ear
         if (ab > 120) {
 //            [audio playEffect:soundEffects[@"rightB"]];
             [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:1 loop:false];
@@ -291,7 +293,7 @@
         }
         heardR = true;
     }
-    if (echo->radius > dL && !heardL) { // left ear
+    if (echo->radius > dR && !heardL) { // left ear
         if (ab > 120) {
 //            [audio playEffect:soundEffects[@"leftB"]];
             [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:-1 loop:false];
