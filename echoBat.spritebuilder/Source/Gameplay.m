@@ -15,6 +15,8 @@
     CCSprite *_rotateLayer;
     CCSprite *_bat;
     
+    CCNode *_cheatMap;
+    
     CCSprite *_pix1;
     CCSprite *_pix2;
     
@@ -363,6 +365,13 @@
 
 }
 
+-(void) cheatMap {
+    if (_cheatMap.visible) {
+        _cheatMap.visible = false;
+    } else {
+    _cheatMap.visible = true;
+    }
+}
 -(void) playRight {
     [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:1 loop:false];
     
