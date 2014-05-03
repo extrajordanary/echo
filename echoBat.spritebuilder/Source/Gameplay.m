@@ -151,8 +151,13 @@
 // update method
 - (void)update {
     if(!paused && start) {
-        // update positions
+        // update position
         [player update];
+        
+        // check for soundwaves hitting player or obstacles
+        [self checkPulse];
+        [self checkEcho];
+        
         heading = player->dir;
         [pulse update];
         [echo update];
@@ -171,6 +176,47 @@
     }
     
     // update timer here?
+}
+
+- (void)checkPulse {
+    
+    // if player's pulse hits the target start a new echo from target location
+    float dist = [Vector2D distanceFrom:target->position to:pulse->position];
+    if (pulse->radius > dist && !bounced) {
+        echo = [SoundWave withX:target->position->x Y:target->position->y speed:pulseSpeed];
+        bounced = true;
+        heardR = false;
+        heardL = false;
+    }
+}
+
+- (void)checkEcho {
+    // distance between echo and bat
+    Vector2D *ang = [Vector2D withX:(echo->position->x - player->position->x)
+                                  Y:(echo->position->y - player->position->y)];
+    int ab = [Vector2D angleBetween:ang and:player->velocity];
+            
+    float dR = [Vector2D distanceFrom:player->rightEar to:echo->position];
+    float dL = [Vector2D distanceFrom:player->leftEar to:echo->position];
+            
+    if (pulse->radius > dR && !heardR) {   // right ear
+        if (ab > 120) {
+            [audio playEffect:soundEffects[@"rightB"]];
+        } else {
+            [audio playEffect:soundEffects[@"right"]];
+        }
+        heardR = true;
+    }
+    if (pulse->radius > dL && !heardL) { // left ear
+        if (ab > 120) {
+            [audio playEffect:soundEffects[@"leftB"]];
+        } else {
+            [audio playEffect:soundEffects[@"left"]];
+        }
+        heardL = true;
+    }
+    
+
 }
 
 - (void)pauseGame {
