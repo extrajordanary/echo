@@ -123,24 +123,7 @@
 
 // is called when CCB file has completed loading
 - (void)didLoadFromCCB {
-    // load audio files
-   //~/Resources/Published-iOS/echo_sounds
-   
-    
-//    NSString *soundFilePath =
-//    [[NSBundle mainBundle] pathForResource: @"Published-iOS/echo_sounds/pulseOut"
-//                                    ofType: @"wav"];
-//    
-//    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
-//    
-//    AVAudioPlayer *newPlayer =
-//    [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL
-//                                           error: nil];
-//    [fileURL release];
-//    
-//    pulseOut = newPlayer;
-//    [newPlayer release];
-//    
+
     
     
     // create starter instances

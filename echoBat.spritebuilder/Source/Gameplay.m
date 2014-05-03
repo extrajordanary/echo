@@ -9,6 +9,14 @@
 #import "Gameplay.h"
 
 @implementation Gameplay {
+    
+    CCSprite *_rotateLayer;
+    CCSprite *_bat;
+    
+    CCActionRotateBy *batRight;
+    CCActionRotateBy *batLeft;
+    CCActionRotateTo *worldLeft;
+    CCActionRotateTo *worldRight;
 
     OALSimpleAudio *audio;
     NSArray *soundFiles;
@@ -40,6 +48,8 @@
     bool bounced; // has the current pulse generated an echo yet?
     bool heardR; // has right ear heard current echo?
     bool heardL; // has left ear heard current echo?
+    
+    float heading;
     
     int score;
     
@@ -78,6 +88,11 @@
         
         CCLOG(@"start values set");
         
+        // CCActions
+        batLeft = [CCActionRotateBy actionWithDuration:.5 angle:-10];
+        batRight = [CCActionRotateBy actionWithDuration:.5 angle:10];
+
+        
         //create audio player and preload sound effects
         audio = [OALSimpleAudio sharedInstance];
         
@@ -110,6 +125,7 @@
         // load initial bats and soundwaves
         player = [Bat withX:0 Y:0 size:size ears:earFact direction:270 speed:speed pred:true];
         CCLOG(@"made bat");
+        heading = player->dir;
         target = [Bat withX:0 Y:0 size:size ears:0 direction:0 speed:0 pred:false];
         [target newLoc];
         pulse = [SoundWave withX:0 Y:0 speed:0]; // empty initial pulse
@@ -135,11 +151,15 @@
 // update method
 - (void)update {
     if(!paused && start) {
-//        [prey update];
-//        [pred update];
-//        [pulse update];
-//        [echo update];
-//        [pred caught:prey];
+        // update positions
+        [player update];
+        heading = player->dir;
+        [pulse update];
+        [echo update];
+        
+        // did the player catch the target?
+        
+        
     }
     
     // update scoreboard?
@@ -153,19 +173,51 @@
     // update timer here?
 }
 
-
+- (void)pauseGame {
+    CCLOG(@"pause");
+}
 
 - (void)turnLeft {
+    [_bat runAction:
+                      [CCActionSequence actions:
+                       batLeft,
+                       batRight,
+                       nil]];
+ 
+//    [_bat setRotation:-10];
     CCLOG(@"turn left");
-    //    _uiGround.rotation = -5;
-    [player turn:15];
-    CCLOG(@"heading %f", player->dir);
+    [player turn:5];
+
+    heading = player->dir;
+    worldLeft = [CCActionRotateTo actionWithDuration:.5 angle:heading];
+    [_rotateLayer runAction:
+     [CCActionSequence actions:
+      worldLeft,
+      nil]];
+    
+//    [_rotateLayer setRotation:heading];
+    CCLOG(@"heading %f", heading);
 }
 
 - (void)turnRight {
+//    [_bat setRotation:10];
+    
+    [_bat runAction:
+     [CCActionSequence actions:
+      batRight,
+      batLeft,
+      nil]];
+    
     CCLOG(@"turn right");
-    //    _uiGround.rotation = 5;
-    [player turn:-15];
+    [player turn:-5];
+    heading = player->dir;
+    worldRight = [CCActionRotateTo actionWithDuration:.5 angle:heading];
+
+    [_rotateLayer runAction:
+     [CCActionSequence actions:
+      worldRight,
+      nil]];
+//    [_rotateLayer setRotation:heading];
     CCLOG(@"heading %f", player->dir);
 }
 
