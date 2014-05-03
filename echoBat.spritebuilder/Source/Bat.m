@@ -61,8 +61,8 @@
 //    position-> y += fmodf(arc4random(), 100) -50;
 
     Vector2D *tempVect = [Vector2D randomInside:zone];
-    position->x += tempVect->x;
-    position->y += tempVect->y;
+    position->x = tempVect->x;
+    position->y = tempVect->y;
     
     //    [self update];
 }

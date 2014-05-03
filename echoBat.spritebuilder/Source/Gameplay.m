@@ -242,19 +242,19 @@
     Vector2D *ang = [Vector2D withX:(target->position->x - player->position->x)
                                   Y:(target->position->y - player->position->y)];
 
-    Vector2D *targ = [Vector2D withX:50 Y:50];
-    float targAng = [Vector2D getAngle:targ];
-    
-    Vector2D *theplayer = [Vector2D withX:player->position->x Y:player->position->y];
-    float tpAng = [Vector2D getAngle:theplayer];
-    
-    float tar2pAng = [Vector2D getAngle:ang];
-    
+//    Vector2D *targ = [Vector2D withX:50 Y:50];
+//    float targAng = [Vector2D getAngle:targ];
+//    
+//    Vector2D *theplayer = [Vector2D withX:player->position->x Y:player->position->y];
+//    float tpAng = [Vector2D getAngle:theplayer];
+//    
+//    float tar2pAng = [Vector2D getAngle:ang];
+//    
     float temp2 = [Vector2D getAngle:player->velocity];
 
     
     int ab = [Vector2D angleBetween:player->velocity and:ang];
-    float dot = [Vector2D dot:player->velocity with:ang];
+//    float dot = [Vector2D dot:player->velocity with:ang];
     
     heading = player->dir;
     
@@ -265,12 +265,12 @@
         
 
         CCLOG(@"velocity - %f", temp2);
-        CCLOG(@"heading - %f", heading);
-        CCLOG(@"target to player angle - %f", tar2pAng);
+//        CCLOG(@"heading - %f", heading);
+//        CCLOG(@"target to player angle - %f", tar2pAng);
         
         CCLOG(@"player to target angle - %i", ab);
-        CCLOG(@"difference1 --- %f", temp2-ab);
-        CCLOG(@"difference2 --- %f", ab-tpAng);
+//        CCLOG(@"difference1 --- %f", temp2-ab);
+//        CCLOG(@"difference2 --- %f", ab-tpAng);
 //        CCLOG(@"dot   %f", dot);
         
         counter =0;
@@ -283,11 +283,9 @@
             
     if (echo->radius > dL && !heardR) {   // right ear
         if (ab > 120) {
-//            [audio playEffect:soundEffects[@"rightB"]];
             [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:1 loop:false];
             CCLOG(@"behind right ear");
         } else {
-//            [audio playEffect:soundEffects[@"right"]];
             [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:1 loop:false];
             CCLOG(@"right ear");
         }
@@ -295,11 +293,9 @@
     }
     if (echo->radius > dR && !heardL) { // left ear
         if (ab > 120) {
-//            [audio playEffect:soundEffects[@"leftB"]];
             [audio playEffect:soundEffects[@"leftB"] volume:.7 pitch:1 pan:-1 loop:false];
             CCLOG(@"behind left ear");
         } else {
-//            [audio playEffect:soundEffects[@"left"]];
             [audio playEffect:soundEffects[@"left"] volume:1 pitch:1 pan:-1 loop:false];
             CCLOG(@"left ear");
         }
