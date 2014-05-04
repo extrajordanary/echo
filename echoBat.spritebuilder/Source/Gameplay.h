@@ -14,4 +14,6 @@
 
 @interface Gameplay : CCNode
 
+@property NSDate* timeStarted;
+
 @end

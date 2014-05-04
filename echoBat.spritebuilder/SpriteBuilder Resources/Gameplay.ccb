@@ -5,7 +5,7 @@
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>currentSequenceId</key>
 	<integer>0</integer>
 	<key>docDimensionsType</key>
@@ -779,8 +779,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1278,7 +1276,7 @@
 						<key>value</key>
 						<array>
 							<real>100</real>
-							<real>100</real>
+							<real>150</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1529,6 +1527,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1626,7 +1626,7 @@
 						<key>value</key>
 						<array>
 							<real>100</real>
-							<real>100</real>
+							<real>150</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1869,6 +1869,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1949,7 +1951,7 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
+							<real>150</real>
 							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2177,6 +2179,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
